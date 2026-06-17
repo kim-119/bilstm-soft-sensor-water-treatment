@@ -142,6 +142,12 @@ PyTorch는 사용자의 CUDA 버전에 맞추어 공식 설치 명령으로 설�
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
+## 예시(가상) 데이터 학습 결과
+
+아래 문서에서 합성 예시 데이터로 Bi-LSTM 및 비교 모델(선형회귀/LSTM/GRU)을 RTX 3050(CUDA)에서 학습한 시연 결과와 모델별 성능 비교 그림을 확인할 수 있다. 모든 수치는 코드 동작 시연용 상대 비교값이며 실제 현장 성능이 아니다.
+
+[예시_실험결과.md](./bilstm_soft_sensor_water_treatment/results/예시_실험결과.md)
+
 ## 세부 문서
 
 프로젝트의 상세 설계 문서는 아래 파일에서 확인할 수 있다.
