@@ -1,0 +1,43 @@
+# --- Secrets / credentials (절대 커밋 금지) ---
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*credential*
+*secret*
+*token*
+*password*
+*.cfg.secret
+secrets/
+.secrets/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- Data (대용량/민감 데이터 추적 제외, 구조는 .gitkeep로 유지) ---
+bilstm_soft_sensor_water_treatment/data/raw/*
+bilstm_soft_sensor_water_treatment/data/processed/*
+!bilstm_soft_sensor_water_treatment/data/raw/.gitkeep
+!bilstm_soft_sensor_water_treatment/data/processed/.gitkeep
+
+# --- Model checkpoints / metrics 산출물 ---
+bilstm_soft_sensor_water_treatment/results/checkpoints/*
+!bilstm_soft_sensor_water_treatment/results/checkpoints/.gitkeep
+*.pt
+*.pth
+*.ckpt
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

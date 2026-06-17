@@ -1,0 +1,47 @@
+project_name: bilstm_soft_sensor_water_treatment
+
+hardware:
+  gpu: NVIDIA GeForce RTX 3050
+  device: cuda
+  mixed_precision: true
+
+data:
+  input_window: 24
+  prediction_horizon: 1
+  target_columns:
+    - NH3_N
+    - COD
+  feature_columns:
+    - DO
+    - pH
+    - ORP
+    - water_temperature
+    - MLSS
+    - influent_flow_rate
+    - aeration_rate
+    - return_sludge_ratio
+    - influent_load
+    - hour
+    - day_of_week
+    - season
+
+model:
+  type: BiLSTM
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.2
+  bidirectional: true
+
+training:
+  batch_size: 16
+  learning_rate: 0.001
+  epochs: 100
+  optimizer: Adam
+  loss_function: MSELoss
+  early_stopping_patience: 10
+
+evaluation:
+  metrics:
+    - MAE
+    - RMSE
+    - R2

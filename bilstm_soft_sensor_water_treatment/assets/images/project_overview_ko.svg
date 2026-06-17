@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" font-family="'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+<rect width="1600" height="1120" fill="#f7f9fc"/>
+<rect x="50" y="50" width="1500" height="150" rx="18" fill="#17253a"/>
+<text x="800.0" y="128" text-anchor="middle" fill="#ffffff" font-size="44" font-weight="700">Bi-LSTM 기반 수처리 공정 Soft Sensor 모델 설계</text>
+<text x="800.0" y="168" text-anchor="middle" fill="#b7c5db" font-size="24">실시간 센서 데이터로 수질 항목을 간접 예측하는 운영자 의사결정 보조 모델</text>
+<rect x="50.0" y="234.0" width="476.0" height="386.0" rx="16" fill="#ffffff" stroke="#dfe4ea" stroke-width="2"/>
+<path d="M50.0,250.0 a16,16 0 0 1 16,-16 h444.0 a16,16 0 0 1 16,16 v54 h-476.0 z" fill="#2563eb"/>
+<circle cx="88.0" cy="269.0" r="20" fill="#ffffff"/>
+<text x="88.0" y="278.0" text-anchor="middle" fill="#2563eb" font-size="26" font-weight="700">1</text>
+<text x="120.0" y="272.0" fill="#ffffff" font-size="28" font-weight="700">프로젝트 목적</text>
+<text x="120.0" y="294.0" fill="#ebf0f8" font-size="16">Soft Sensor 설계 목표</text>
+<circle cx="83.0" cy="337.0" r="5" fill="#2563eb"/>
+<text x="100.0" y="344.0" fill="#2d3748" font-size="23">실시간 센서 데이터 기반 수질 예측</text>
+<circle cx="83.0" cy="377.0" r="5" fill="#2563eb"/>
+<text x="100.0" y="384.0" fill="#2d3748" font-size="23">측정 지연 항목(NH3-N, COD 등) 간접 추정</text>
+<circle cx="83.0" cy="417.0" r="5" fill="#2563eb"/>
+<text x="100.0" y="424.0" fill="#2d3748" font-size="23">운영자 의사결정 보조 (자동제어 아님)</text>
+<rect x="562.0" y="234.0" width="476.0" height="386.0" rx="16" fill="#ffffff" stroke="#dfe4ea" stroke-width="2"/>
+<path d="M562.0,250.0 a16,16 0 0 1 16,-16 h444.0 a16,16 0 0 1 16,16 v54 h-476.0 z" fill="#0d9488"/>
+<circle cx="600.0" cy="269.0" r="20" fill="#ffffff"/>
+<text x="600.0" y="278.0" text-anchor="middle" fill="#0d9488" font-size="26" font-weight="700">2</text>
+<text x="632.0" y="272.0" fill="#ffffff" font-size="28" font-weight="700">입력 데이터</text>
+<text x="632.0" y="294.0" fill="#ebf0f8" font-size="16">공정 센서 변수</text>
+<circle cx="595.0" cy="337.0" r="5" fill="#0d9488"/>
+<text x="612.0" y="344.0" fill="#2d3748" font-size="23">DO (용존산소) · pH · ORP</text>
+<circle cx="595.0" cy="377.0" r="5" fill="#0d9488"/>
+<text x="612.0" y="384.0" fill="#2d3748" font-size="23">수온 · MLSS · 유입 유량</text>
+<circle cx="595.0" cy="417.0" r="5" fill="#0d9488"/>
+<text x="612.0" y="424.0" fill="#2d3748" font-size="23">폭기량 · 반송률 · 유입 부하</text>
+<circle cx="595.0" cy="457.0" r="5" fill="#0d9488"/>
+<text x="612.0" y="464.0" fill="#2d3748" font-size="23">시간 정보 (시간/요일/계절)</text>
+<rect x="1074.0" y="234.0" width="476.0" height="386.0" rx="16" fill="#ffffff" stroke="#dfe4ea" stroke-width="2"/>
+<path d="M1074.0,250.0 a16,16 0 0 1 16,-16 h444.0 a16,16 0 0 1 16,16 v54 h-476.0 z" fill="#7c3aed"/>
+<circle cx="1112.0" cy="269.0" r="20" fill="#ffffff"/>
+<text x="1112.0" y="278.0" text-anchor="middle" fill="#7c3aed" font-size="26" font-weight="700">3</text>
+<text x="1144.0" y="272.0" fill="#ffffff" font-size="28" font-weight="700">모델 흐름</text>
+<text x="1144.0" y="294.0" fill="#ebf0f8" font-size="16">데이터 → 예측 파이프라인</text>
+<circle cx="1107.0" cy="337.0" r="5" fill="#7c3aed"/>
+<text x="1124.0" y="344.0" fill="#2d3748" font-size="23">센서 데이터 수집</text>
+<circle cx="1107.0" cy="377.0" r="5" fill="#7c3aed"/>
+<text x="1124.0" y="384.0" fill="#2d3748" font-size="23">결측치 · 이상치 처리</text>
+<circle cx="1107.0" cy="417.0" r="5" fill="#7c3aed"/>
+<text x="1124.0" y="424.0" fill="#2d3748" font-size="23">정규화 (스케일링)</text>
+<circle cx="1107.0" cy="457.0" r="5" fill="#7c3aed"/>
+<text x="1124.0" y="464.0" fill="#2d3748" font-size="23">슬라이딩 윈도우 구성</text>
+<circle cx="1107.0" cy="497.0" r="5" fill="#7c3aed"/>
+<text x="1124.0" y="504.0" fill="#2d3748" font-size="23">Bi-LSTM 학습</text>
+<circle cx="1107.0" cy="537.0" r="5" fill="#7c3aed"/>
+<text x="1124.0" y="544.0" fill="#2d3748" font-size="23">수질 예측값 출력</text>
+<rect x="50.0" y="656.0" width="476.0" height="386.0" rx="16" fill="#ffffff" stroke="#dfe4ea" stroke-width="2"/>
+<path d="M50.0,672.0 a16,16 0 0 1 16,-16 h444.0 a16,16 0 0 1 16,16 v54 h-476.0 z" fill="#d97706"/>
+<circle cx="88.0" cy="691.0" r="20" fill="#ffffff"/>
+<text x="88.0" y="700.0" text-anchor="middle" fill="#d97706" font-size="26" font-weight="700">4</text>
+<text x="120.0" y="694.0" fill="#ffffff" font-size="28" font-weight="700">예측 대상</text>
+<text x="120.0" y="716.0" fill="#ebf0f8" font-size="16">출력 수질 항목</text>
+<circle cx="83.0" cy="759.0" r="5" fill="#d97706"/>
+<text x="100.0" y="766.0" fill="#2d3748" font-size="23">NH3-N (암모니아성 질소)</text>
+<circle cx="83.0" cy="799.0" r="5" fill="#d97706"/>
+<text x="100.0" y="806.0" fill="#2d3748" font-size="23">COD (화학적 산소요구량)</text>
+<circle cx="83.0" cy="839.0" r="5" fill="#d97706"/>
+<text x="100.0" y="846.0" fill="#2d3748" font-size="23">BOD (생물학적 산소요구량)</text>
+<circle cx="83.0" cy="879.0" r="5" fill="#d97706"/>
+<text x="100.0" y="886.0" fill="#2d3748" font-size="23">TN (총질소)</text>
+<circle cx="83.0" cy="919.0" r="5" fill="#d97706"/>
+<text x="100.0" y="926.0" fill="#2d3748" font-size="23">방류수질 기준 초과 가능성</text>
+<rect x="562.0" y="656.0" width="476.0" height="386.0" rx="16" fill="#ffffff" stroke="#dfe4ea" stroke-width="2"/>
+<path d="M562.0,672.0 a16,16 0 0 1 16,-16 h444.0 a16,16 0 0 1 16,16 v54 h-476.0 z" fill="#be185d"/>
+<circle cx="600.0" cy="691.0" r="20" fill="#ffffff"/>
+<text x="600.0" y="700.0" text-anchor="middle" fill="#be185d" font-size="26" font-weight="700">5</text>
+<text x="632.0" y="694.0" fill="#ffffff" font-size="28" font-weight="700">하드웨어 환경</text>
+<text x="632.0" y="716.0" fill="#ebf0f8" font-size="16">학습 GPU 조건</text>
+<circle cx="595.0" cy="759.0" r="5" fill="#be185d"/>
+<text x="612.0" y="766.0" fill="#2d3748" font-size="23">NVIDIA GeForce RTX 3050</text>
+<circle cx="595.0" cy="799.0" r="5" fill="#be185d"/>
+<text x="612.0" y="806.0" fill="#2d3748" font-size="23">CUDA 기반 GPU 학습</text>
+<circle cx="595.0" cy="839.0" r="5" fill="#be185d"/>
+<text x="612.0" y="846.0" fill="#2d3748" font-size="23">경량 Bi-LSTM 구조</text>
+<circle cx="595.0" cy="879.0" r="5" fill="#be185d"/>
+<text x="612.0" y="886.0" fill="#2d3748" font-size="23">배치 크기 16 기준</text>
+<rect x="1074.0" y="656.0" width="476.0" height="386.0" rx="16" fill="#ffffff" stroke="#dfe4ea" stroke-width="2"/>
+<path d="M1074.0,672.0 a16,16 0 0 1 16,-16 h444.0 a16,16 0 0 1 16,16 v54 h-476.0 z" fill="#059669"/>
+<circle cx="1112.0" cy="691.0" r="20" fill="#ffffff"/>
+<text x="1112.0" y="700.0" text-anchor="middle" fill="#059669" font-size="26" font-weight="700">6</text>
+<text x="1144.0" y="694.0" fill="#ffffff" font-size="28" font-weight="700">기대 효과</text>
+<text x="1144.0" y="716.0" fill="#ebf0f8" font-size="16">운영 보조 가치</text>
+<circle cx="1107.0" cy="759.0" r="5" fill="#059669"/>
+<text x="1124.0" y="766.0" fill="#2d3748" font-size="23">실시간 수질 추정 보조</text>
+<circle cx="1107.0" cy="799.0" r="5" fill="#059669"/>
+<text x="1124.0" y="806.0" fill="#2d3748" font-size="23">측정 지연 보완</text>
+<circle cx="1107.0" cy="839.0" r="5" fill="#059669"/>
+<text x="1124.0" y="846.0" fill="#2d3748" font-size="23">기준 초과 조기 경고 지원</text>
+<circle cx="1107.0" cy="879.0" r="5" fill="#059669"/>
+<text x="1124.0" y="886.0" fill="#2d3748" font-size="23">공정 운영 안정성 향상 지원</text>
+<text x="800.0" y="1094" text-anchor="middle" fill="#5a6575" font-size="18">※ 실제 성능 수치(MAE/RMSE/R²)는 현장 데이터 확보·학습 후 산출 / 본 모델은 자동제어가 아닌 운영 보조용</text>
+</svg>
